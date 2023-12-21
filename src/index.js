@@ -70,11 +70,14 @@ app.post("/upload/media",upload.fields([{ name: "video" }, { name: "vtt" }]),asy
 app.get("/getAllVideo", async (req, res) => {
   try {
     // Fetch the video information from the database, assuming you have a method to retrieve it
+    console.log("enter Inside GetAllVideo")
     const videoResult = await VideoModel.findAll();
+    console.log("After Calling Database")
     return res.status(200).json({
         success : true,
         videoResult
     })
+    
   } catch (error) {
     res.status(500).send({
         success : false,
