@@ -5,11 +5,13 @@ const dotenv = require("dotenv");
 const path = require("path");
 const multer = require("multer");
 const VideoModel = require("./model/videoSchema.js");
+const cors = require("cors")
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("uploads"));
+app.use(cors())
 
 //Handling uncaughtException  --> anyThing Not defined
 process.on("uncaughtException", (err) => {
