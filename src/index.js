@@ -46,11 +46,15 @@ app.post("/upload/media",upload.fields([{ name: "video" }, { name: "vtt" }]),asy
       const videoFilePath = req.files["video"][0].filename;
       const vttFilePath = req.files["vtt"][0].filename;
 
+      console.log(videoFilePath)
+
       const mediaResult = await VideoModel.create({
         video_path: videoFilePath,
         vtt_path: vttFilePath,
       });
 
+      console.log(mediaResult)
+      
       return res.status(201).json({
         success: true,
         message: "Video Data Created Successfully",
