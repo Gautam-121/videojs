@@ -24,15 +24,13 @@ database.sync()
 
 // Configure Multer storage for video and VTT files
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + file.originalname);
-  },
+    destination: './uploads',
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
 });
-const upload = multer({ storage: storage });
 
+const upload = multer({ storage: storage });
 
 app.get("/getSampleData",async(req , res )=>{
     return res.status(200).json({
@@ -72,7 +70,7 @@ app.get("/getAllVideo", async (req, res) => {
     // Fetch the video information from the database, assuming you have a method to retrieve it
     console.log("enter Inside GetAllVideo")
     const videoResult = await VideoModel.findAll();
-    console.log("After Calling Database")
+    console.log("After Calling Data")
     return res.status(200).json({
         success : true,
         videoResult
