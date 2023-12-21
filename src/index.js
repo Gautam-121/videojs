@@ -33,6 +33,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
+app.get("/getSampleData",async(req , res )=>{
+    return res.status(200).json({
+        success :true,
+        message : "Data is Come From Sample Data"
+    })
+})
+
 // API endpoint for uploading video and VTT file
 app.post("/upload/media",upload.fields([{ name: "video" }, { name: "vtt" }]),async (req, res) => {
     try {
