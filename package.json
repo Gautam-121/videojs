@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon src/index.js"
+    "dev": "nodemon index.js",
+    "start" : "npx node index.js",
+    "build": "npm i"
   },
   "author": "",
   "license": "ISC",
