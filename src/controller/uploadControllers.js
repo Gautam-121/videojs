@@ -19,6 +19,10 @@ const uploadMediaData = async (req, res) => {
         const vttFilePath = req.files["vtt"][0].filename;
         const data = JSON.parse(JSON.stringify(req.body))
 
+        console.log(req.files["video"][0])
+        console.log(req.files["vtt"][0])
+        console.log(dada)
+
         const mediaResult = await VideoModel.create({
             video_path: videoFilePath,
             vtt_path: vttFilePath,
