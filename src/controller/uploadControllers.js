@@ -1,15 +1,4 @@
-const multer = require("multer");
-const path = require("path");
 const VideoModel = require("../model/videoSchema");
-
-const storage = multer.diskStorage({
-    destination: "./uploads",
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-    },
-});
-
-const upload = multer({ storage: storage });
 
 // CREATING UPLOADMEDIA DATA
 const uploadMediaData = async (req, res) => {
@@ -21,7 +10,7 @@ const uploadMediaData = async (req, res) => {
 
         console.log(req.files["video"][0])
         console.log(req.files["vtt"][0])
-        console.log(dada)
+        console.log(data)
 
         const mediaResult = await VideoModel.create({
             video_path: videoFilePath,
@@ -38,7 +27,7 @@ const uploadMediaData = async (req, res) => {
     } catch (error) {
         res.status(500).send({
             success: false,
-            message: error.message,
+            message: error,
         });
     }
 }
@@ -54,7 +43,7 @@ const getAllVideo = async (req, res) => {
     } catch (error) {
         res.status(500).send({
             success: false,
-            message: error.message
+            message: error
         });
     }
 }
@@ -83,7 +72,7 @@ const getVideoById = async (req , res)=>{
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: error.message
+            message: error
         })
     }
 }
