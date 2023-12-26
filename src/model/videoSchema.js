@@ -9,12 +9,6 @@ const VideoModel = database.define('video', {
             args: true,
             msg: 'Video ID must be unique.'
         },
-        validate: {
-            notEmpty: {
-                args: true,
-                msg: 'Provide Video_id.'
-            }
-        },
         primaryKey: true
     },
     title: {
@@ -39,13 +33,7 @@ const VideoModel = database.define('video', {
     },
     vtt_path: {
         type: DataTypes.STRING,
-        validate: {
-            notEmpty: {
-                args: true,
-                msg: 'Vtt is not be empty.'
-            }
-        },
-        allowNull: false
+        allowNull: true
     },
 });
 

@@ -5,12 +5,15 @@ const uploadMediaData = async (req, res) => {
     try {
 
         const videoFilePath = req.files["video"][0].filename;
-        const vttFilePath = req.files["vtt"][0].filename;
+        let vttFilePath = null;
         const data = JSON.parse(JSON.stringify(req.body))
 
         console.log(req.files["video"][0])
-        console.log(req.files["vtt"][0])
-        console.log(data)
+
+        if(req.files?.["vtt"]?.[0]?.filename){
+            vttFilePath = req.files["vtt"][0].filename
+            console.log(req.files?.["vtt"]?.[0]?.filename)
+        }
 
         const mediaResult = await VideoModel.create({
             video_path: videoFilePath,
@@ -27,7 +30,7 @@ const uploadMediaData = async (req, res) => {
     } catch (error) {
         res.status(500).send({
             success: false,
-            message: error,
+            message: error.message,
         });
     }
 }
