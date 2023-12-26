@@ -60,29 +60,32 @@ const getAllVideo = async (req, res) => {
 }
 
 const getVideoById = async (req , res)=>{
-    
-    if(!req.params.id){
-        return res.status(400).json({
-            success : false,
-            message : "Video_id is Missing"
+    try {
+        if(!req.params.id){
+            return res.status(400).json({
+                success : false,
+                message : "Video_id is Missing"
+            })
+        }
+        const videoData = await VideoModel.findOne({ 
+            where: { video_id: req.params.id } 
+        })
+        if(!videoData){
+            return res.status(404).json({
+                success : false,
+                message : "Video data not Found"
+            })
+        }
+        return res.status(200).json({
+            success : true,
+            data : videoData
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
         })
     }
-
-    const videoData = await VideoModel.findOne({ 
-        where: { video_id: req.params.id } 
-    })
-
-    if(!videoData){
-        return res.status(404).json({
-            success : false,
-            message : "Video data not Found"
-        })
-    }
-
-    return res.status(200).json({
-        success : true,
-        data : videoData
-    })
 }
 
 
