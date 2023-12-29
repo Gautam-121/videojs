@@ -4,11 +4,13 @@ const VideoModel = require("../model/videoSchema");
 const uploadMediaData = async (req, res) => {
     try {
 
-        const videoFilePath = req.files["video"][0].filename;
+        console.log("Enter inside UpdloadData")
+        const videoFilePath = req?.files["video"]?.[0]?.filename;
+        console.log("Rich line No 8")
         let vttFilePath = null;
         const data = JSON.parse(JSON.stringify(req.body))
 
-        console.log(req.files["video"][0])
+        console.log(req?.files["video"]?.[0])
 
         if(req.files?.["vtt"]?.[0]?.filename){
             vttFilePath = req.files["vtt"][0].filename
@@ -31,6 +33,7 @@ const uploadMediaData = async (req, res) => {
         res.status(500).send({
             success: false,
             message: error.message,
+            msg: error
         });
     }
 }
