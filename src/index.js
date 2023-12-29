@@ -4,6 +4,7 @@ const database = require("./config/database.js");
 const dotenv = require("dotenv");
 const uploadRoutes = require("./routes/uploadRoutes");
 const cors = require("cors");
+const multer = require("multer")
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("uploads"));
 app.use(cors());
+app.use(multer().any())
 
 process.on("uncaughtException", (err) => {
   console.log(`Error ${err.message}`);
