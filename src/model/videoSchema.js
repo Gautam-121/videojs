@@ -3,7 +3,7 @@ const database = require("../config/database.js")
 
 const VideoModel = database.define('video', {
     video_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         unique: {
             args: true,
